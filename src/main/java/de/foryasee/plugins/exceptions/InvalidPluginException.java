@@ -8,15 +8,11 @@ import java.io.IOException;
  */
 public class InvalidPluginException extends IOException {
 
-  public InvalidPluginException(File file, String message) {
+  public InvalidPluginException(final File file, final String message) {
     super(file.getAbsolutePath() + " " + message);
   }
 
-  public InvalidPluginException(File file, String message, Throwable cause) {
-    super(file.getAbsolutePath() + " " + message, cause);
-  }
-
-  public InvalidPluginException(File file, Throwable cause) {
+  public InvalidPluginException(final File file, final Throwable cause) {
     super(file.getAbsolutePath() + " ", cause);
   }
 }

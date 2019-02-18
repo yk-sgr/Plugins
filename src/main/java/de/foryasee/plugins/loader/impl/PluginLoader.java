@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.jar.JarEntry;
@@ -24,7 +25,8 @@ import java.util.jar.JarInputStream;
 public class PluginLoader implements IPluginLoader {
 
   @Override
-  public <T extends Plugin> CompletableFuture<PluginLoadedResult<T>> load(File file) {
+  public <T extends Plugin> CompletableFuture<PluginLoadedResult<T>> load(final File file) {
+    Objects.requireNonNull(file);
     return CompletableFuture.supplyAsync(() -> {
       T plugin;
       try {
@@ -43,7 +45,7 @@ public class PluginLoader implements IPluginLoader {
     });
   }
 
-  private ClassLoader getClassLoader(File file) throws InvalidPluginException {
+  private ClassLoader getClassLoader(final File file) throws InvalidPluginException {
     try {
       return new URLClassLoader(new URL[] {file.toURI().toURL()});
     } catch (MalformedURLException e) {
@@ -51,7 +53,7 @@ public class PluginLoader implements IPluginLoader {
     }
   }
 
-  private Set<Class<?>> getClassesFromJar(File file, ClassLoader classLoader) throws InvalidPluginException {
+  private Set<Class<?>> getClassesFromJar(final File file, final ClassLoader classLoader) throws InvalidPluginException {
     final var classes = new HashSet<Class<?>>();
     try (final var jarInputStream = new JarInputStream(new FileInputStream(file))) {
       JarEntry jarEntry;
@@ -70,7 +72,8 @@ public class PluginLoader implements IPluginLoader {
     return classes;
   }
 
-  private <T> Class<T> getPluginClass(File file, Set<Class<?>> classes) throws InvalidPluginException {
+  @SuppressWarnings("unchecked")
+  private <T> Class<T> getPluginClass(final File file, final Set<Class<?>> classes) throws InvalidPluginException {
     final var pluginClasses = new ArrayList<Class<T>>();
     classes.forEach(clazz -> {
       if (!Plugin.class.isAssignableFrom(clazz) || Modifier.isAbstract(clazz.getModifiers())) {
@@ -91,7 +94,7 @@ public class PluginLoader implements IPluginLoader {
     return pluginClasses.get(0);
   }
 
-  private void checkFile(File file) throws InvalidPluginException {
+  private void checkFile(final File file) throws InvalidPluginException {
     if (!file.exists()) {
       throw new InvalidPluginException(file, "does not exist.");
     }
