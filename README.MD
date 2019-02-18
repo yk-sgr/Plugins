@@ -21,10 +21,10 @@ allprojects {
     ...
     maven { url 'https://jitpack.io' }
   }
-	}
+}
 ...
 dependencies {
-        implementation 'com.github.ForYaSee:Plugins:Tag'
+  implementation 'com.github.ForYaSee:Plugins:Tag'
 }
 ```
 
