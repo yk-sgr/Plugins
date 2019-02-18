@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Handles the loading of {@link Plugin}s.
  */
+@SuppressWarnings("unused")
 public interface IPluginLoader {
 
   /**
@@ -19,6 +20,8 @@ public interface IPluginLoader {
   <T extends Plugin> CompletableFuture<PluginLoadedResult<T>> load(File file);
 
   /**
+   * Loads a plugin from a 'String' that is the location of the plugin file.
+   *
    * @see #load(File)
    * @param file the location of the file.
    */

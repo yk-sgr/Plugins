@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Example class for showing the usage of the {@link PluginLoader}.
  */
-public class Example {
+class Example {
 
   public static void main(String[] args) throws ExecutionException, InterruptedException {
     // Create PluginLoader
