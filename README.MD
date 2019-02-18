@@ -1,5 +1,5 @@
 # Plugins
-This lightweight library provides a simple way to load external .jar files into your application while running.
+This lightweight library provides a simple way to load external Plugins into your application while running.
 
 + **Requires JDK 11**
 
