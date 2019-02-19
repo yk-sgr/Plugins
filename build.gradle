@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'maven'
+    id 'signing'
 }
 
 group 'de.foryasee'
-version '1.0.0'
+version '1.0.1'
 
 sourceCompatibility = 11
 
@@ -13,4 +15,64 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2') {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name 'Plugins'
+                packaging 'jar'
+                description 'Simple loading of plugins.'
+                url 'https://github.com/ForYaSee/Plugins'
+
+                scm {
+                    url 'scm:git@github.com:ForYaSee/Plugins.git'
+                    connection 'scm:git@github.com:ForYaSee/Plugins.git'
+                    developerConnection 'scm:git@github.com:ForYaSee/Plugins.git'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://opensource.org/licenses/MIT'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'yannickseeger'
+                        name 'Yannick Seeger'
+                    }
+                }
+            }
+        }
+    }
 }
