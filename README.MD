@@ -25,22 +25,15 @@ allprojects {
 }
 ...
 dependencies {
-  implementation 'com.github.ForYaSee:Plugins:Tag'
+  implementation 'de.foryasee:plugins:version'
 }
 ```
 
 Maven:
 ```xml
-<repositories>
-  <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-  </repository>
-</repositories>
-
 <dependency>
-    <groupId>com.github.ForYaSee</groupId>
-    <artifactId>Plugins</artifactId>
-    <version>Tag</version>
+  <groupId>de.foryasee</groupId>
+  <artifactId>plugins</artifactId>
+  <version>VERSION</version>
 </dependency>
 ```
