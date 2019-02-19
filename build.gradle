@@ -37,13 +37,16 @@ signing {
     sign configurations.archives
 }
 
+def sonaUsername = hasProperty('sonatypeUsername') ? blahUser : System.getenv('sonatypeUsername')
+def sonaPassword = hasProperty('sonatypePassword') ? blahPwd : System.getenv('sonatypePassword')
+
 uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2') {
-                authentication(userName: sonatypeUsername, password: sonatypePassword)
+                authentication(userName: sonaUsername, password: sonaPassword)
             }
 
             pom.project {
