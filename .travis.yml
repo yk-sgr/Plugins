@@ -6,7 +6,7 @@ install:
   - true
 
 script:
-  - ./gradlew build
+  - ./gradlew build -x uploadArchives
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
