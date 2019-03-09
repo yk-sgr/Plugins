@@ -37,8 +37,8 @@ signing {
     sign configurations.archives
 }
 
-def sonaUsername = hasProperty('sonatypeUsername') ? blahUser : System.getenv('sonatypeUsername')
-def sonaPassword = hasProperty('sonatypePassword') ? blahPwd : System.getenv('sonatypePassword')
+def sonaUsername = hasProperty('sonatypeUsername') ? project.property('sonatypeUsername') : System.getenv('sonatypeUsername')
+def sonaPassword = hasProperty('sonatypePassword') ? project.property('sonatypePassword') : System.getenv('sonatypePassword')
 
 uploadArchives {
     repositories {
