@@ -1,4 +1,4 @@
-package example;
+package de.foryasee.plugins.example;
 
 import de.foryasee.plugins.Plugin;
 import de.foryasee.plugins.loader.PluginLoadedResult;

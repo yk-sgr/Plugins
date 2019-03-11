@@ -79,7 +79,6 @@ public class PluginLoader implements IPluginLoader {
       if (!Plugin.class.isAssignableFrom(clazz) || Modifier.isAbstract(clazz.getModifiers())) {
         return;
       }
-      System.out.println(clazz.getName());
       try {
         pluginClasses.add((Class<T>) clazz);
       } catch (ClassCastException e) {
@@ -89,7 +88,7 @@ public class PluginLoader implements IPluginLoader {
     if (pluginClasses.isEmpty()) {
       throw new InvalidPluginException(file, "contains no Plugin class.");
     } else if (pluginClasses.size() > 1) {
-      throw new InvalidPluginException(file, "contains multiple Plugin classes");
+      throw new InvalidPluginException(file, "contains multiple Plugin classes: " + pluginClasses);
     }
     return pluginClasses.get(0);
   }
