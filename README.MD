@@ -11,7 +11,7 @@ You are not bound to a specific use scenario and can use them for all.
 
 # Using Plugins
 The .jar file you want to load must contain **exactly one** class that implements the `Plugin` interface.
-An de.foryasee.plugins.example how to actually load the Plugin exists in the `de.foryasee.plugins.example` package.
+An example how to actually load the Plugin exists in the `example` package.
 
 # Download
 
