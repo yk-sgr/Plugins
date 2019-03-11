@@ -30,3 +30,11 @@ Maven:
   <version>VERSION</version>
 </dependency>
 ```
+
+## Contributors
+
+[//]: contributors
+
+<a href="https://github.com/DRSchlaubi"><img src="https://avatars0.githubusercontent.com/u/16060205?s=400&v=4" title="DRSchlaubi" width="80" height="80"></a>
+
+[//]: contributors
